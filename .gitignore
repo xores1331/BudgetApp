@@ -12,7 +12,7 @@
 /frontend/pnpm-debug.log*
 /frontend/lerna-debug.log*
 
-/fontend/node_modules
+/frontend/node_modules
 /frontend/dist
 /frontend/dist-ssr
 /frontend/*.local

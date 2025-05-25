@@ -36,7 +36,7 @@ jobs:
         with:
           node-version: 22
       - name: Install frontend deps
-        working-directory: frontend/src
+        working-directory: frontend
         run: |
           npm install
           npm run build
