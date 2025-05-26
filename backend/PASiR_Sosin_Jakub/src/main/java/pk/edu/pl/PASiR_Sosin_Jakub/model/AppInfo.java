@@ -4,11 +4,10 @@ import lombok.*;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 public class AppInfo {
-    public String appName;
-    public String appVersion;
-    public String message;
+    public final String appName;
+    public final String appVersion;
+    public final String message;
 }

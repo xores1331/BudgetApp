@@ -1,15 +1,12 @@
 package pk.edu.pl.PASiR_Sosin_Jakub.controllers;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pk.edu.pl.PASiR_Sosin_Jakub.dto.TransactionDTO;
 import pk.edu.pl.PASiR_Sosin_Jakub.model.Transaction;
-import pk.edu.pl.PASiR_Sosin_Jakub.repository.TransactionRepository;
 import pk.edu.pl.PASiR_Sosin_Jakub.service.TransactionService;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController

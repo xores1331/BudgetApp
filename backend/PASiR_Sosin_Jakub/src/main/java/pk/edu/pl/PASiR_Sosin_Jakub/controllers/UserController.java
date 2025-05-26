@@ -29,7 +29,7 @@ public class UserController {
         return ResponseEntity.ok(userService.register(dto));
     }
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginDto dto){
+    public ResponseEntity<Object> login(@RequestBody LoginDto dto){
         try{
             String token=userService.login(dto);
             return ResponseEntity.ok(Map.of("token",token));

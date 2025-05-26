@@ -1,8 +1,10 @@
 package pk.edu.pl.PASiR_Sosin_Jakub.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.PersistenceException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import pk.edu.pl.PASiR_Sosin_Jakub.consts.ErrorMessages;
 import pk.edu.pl.PASiR_Sosin_Jakub.dto.BalanceDto;
 import pk.edu.pl.PASiR_Sosin_Jakub.dto.TransactionDTO;
 import pk.edu.pl.PASiR_Sosin_Jakub.model.Transaction;
@@ -13,7 +15,6 @@ import pk.edu.pl.PASiR_Sosin_Jakub.repository.UserRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class TransactionService {
@@ -32,7 +33,7 @@ public class TransactionService {
 
     public Transaction getTramsactionById(Long id){
         return transactionRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundException("Nie znaleziono transakcji o ID: "+id));
+                .orElseThrow(()-> new EntityNotFoundException(ErrorMessages.TRANSACTION_NOT_FOUND + id));
     }
 
     public Transaction saveTransactions(TransactionDTO transactionDetails){
@@ -51,7 +52,7 @@ public class TransactionService {
 
     public Transaction updateTransaction(Long id, TransactionDTO transactionDTO){
         Transaction transaction = transactionRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundException("Nie znaleziono transakcji o ID: "+id));
+                .orElseThrow(()-> new EntityNotFoundException(ErrorMessages.TRANSACTION_NOT_FOUND + id));
 
         if (!transaction.getUser().getEmail().equals(getCurrentUser().getEmail()))
             throw new SecurityException("Brak dostepu do edycji tej transkacji");
@@ -67,12 +68,12 @@ public class TransactionService {
 
     public Transaction removeTransaction(Long id){
         Transaction deletedTransaction = transactionRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundException("Nie znaleziono transakcji o ID: "+id));
+                .orElseThrow(()-> new EntityNotFoundException(ErrorMessages.TRANSACTION_NOT_FOUND + id));
         try {
             transactionRepository.deleteById(id);
             return deletedTransaction;
         } catch (Exception e) {
-            throw new RuntimeException("Błąd przy usuwaniu transakcji "+e);
+            throw new PersistenceException("Błąd przy usuwaniu transakcji "+e);
         }
     }
 

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
@@ -45,7 +46,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                     }
                 }
             }catch (Exception ex){
-                System.out.println("Błąd parsowania JWT: "+ex.getMessage());
+                Logger logger = Logger.getLogger(getClass().getName());
+                logger.info("Błąd parsowania JWT: "+ex.getMessage());
             }
         }
         filterChain.doFilter(request,response);
