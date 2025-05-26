@@ -13,7 +13,7 @@ import HomePage from "../components/HomePage/HomePage";
 import PrivateRoute from "../components/Route/PrivateRoute";
 import PublicRoute from "../components/Route/PublicRoute";
 import BalanceBar from "../components/BalanceBar/BalanceBar";
-import GroupMembersPage from "../pages/GroupsPage/GroupMembersPage";
+import GroupMembersWrapper from "../pages/GroupsPage/GroupMembersWrapper.tsx";
 import GroupDebtsPage from "../pages/GroupsPage/GroupDebtPage";
 import GroupsPage from "../pages/GroupsPage/GroupsPage";
 
@@ -53,7 +53,7 @@ const App: React.FC = () => {
             path="/groups/:groupId/members"
             element={
               <PrivateRoute>
-                <GroupMembersPage />
+                <GroupMembersWrapper  />
               </PrivateRoute>
             }
           />
